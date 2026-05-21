@@ -188,6 +188,8 @@ def slice_around_index(idx: int, before: int, after: int) -> slice:
     -------
     slice(idx-before, idx+after+1)
     """
+    if np.size(idx) == 0:
+        idx = np.nan
     start = idx - before
     end = idx + after + 1
 
@@ -220,8 +222,11 @@ def slice_around_point(trial: pd.Series, point_name: str, before: int, after: in
     -------
     slice object
     """
-    start = trial[point_name] - before
-    end = trial[point_name] + after + 1
+    point = trial[point_name]
+    if np.size(point) == 0:
+        point = np.nan
+    start = point - before
+    end = point + after + 1
 
     if np.isfinite(start):
         start = int(np.asarray(start).item())
@@ -255,8 +260,14 @@ def slice_between_points(
     -------
     slice object
     """
-    start = trial[start_point_name] - before
-    end = trial[end_point_name] + after + 1
+    start_pt = trial[start_point_name]
+    end_pt = trial[end_point_name]
+    if np.size(start_pt) == 0:
+        start_pt = np.nan
+    if np.size(end_pt) == 0:
+        end_pt = np.nan
+    start = start_pt - before
+    end = end_pt + after + 1
 
     if np.isfinite(start):
         start = int(np.asarray(start).item())
