@@ -1,24 +1,34 @@
-[tool.poetry]
+[project]
 name = "pyaldata"
-version = "0.2.0"
+version = "0.2.1"
 description = "Python implementation of TrialData, a library for simplifying the analysis of trial-based data from neuroscience experiments"
-authors = ["Matt Perich", "Catia Fortunato", "Raeed Chowdhury", "Bence Bagi", ]
+authors = [
+    { name = "Matt Perich" },
+    { name = "Catia Fortunato" },
+    { name = "Raeed Chowdhury" },
+    { name = "Bence Bagi" },
+]
 readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy>=1.26.4",
+    "pandas>=2.2.2",
+    "scipy>=1.13.0",
+    "mat73>=0.63",
+]
 
-[tool.poetry.dependencies]
-python = "^3.9"
-numpy = "^1.26.4"
-pandas = "^2.2.2"
-scipy = "^1.13.0"
-mat73 = "^0.63"
-
-[tool.poetry.group.dev.dependencies]
-pytest = "^8.1.1"
-ruff = "^0.3.7"
+[dependency-groups]
+dev = [
+    "pytest>=8.1.1",
+    "ruff>=0.3.7",
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["pyaldata"]
 
 [tool.black]
 line_length = 92
