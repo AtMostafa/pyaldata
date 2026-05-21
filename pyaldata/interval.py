@@ -141,7 +141,7 @@ def restrict_to_interval(
     # Save absolute session indices before the loop shifts them
     if 'idx_trial_start' in idx_fields:
         abs_trial_starts = [
-            int(gs) + zp
+            int(np.asarray(gs).item()) + zp
             for gs, zp in zip(trial_data['idx_trial_start'].to_numpy(), zero_points)
         ]
 
@@ -192,9 +192,9 @@ def slice_around_index(idx: int, before: int, after: int) -> slice:
     end = idx + after + 1
 
     if np.isfinite(start):
-        start = int(start)
+        start = int(np.asarray(start).item())
     if np.isfinite(end):
-        end = int(end)
+        end = int(np.asarray(end).item())
 
     return slice(start, end)
 
@@ -224,9 +224,9 @@ def slice_around_point(trial: pd.Series, point_name: str, before: int, after: in
     end = trial[point_name] + after + 1
 
     if np.isfinite(start):
-        start = int(start)
+        start = int(np.asarray(start).item())
     if np.isfinite(end):
-        end = int(end)
+        end = int(np.asarray(end).item())
 
     return slice(start, end)
 
@@ -259,9 +259,9 @@ def slice_between_points(
     end = trial[end_point_name] + after + 1
 
     if np.isfinite(start):
-        start = int(start)
+        start = int(np.asarray(start).item())
     if np.isfinite(end):
-        end = int(end)
+        end = int(np.asarray(end).item())
 
     return slice(start, end)
 

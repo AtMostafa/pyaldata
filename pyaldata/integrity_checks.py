@@ -25,4 +25,6 @@ def all_integer(arr: np.ndarray) -> bool:
     """
     Check if all the values in arr are approximately integers
     """
+    if np.issubdtype(arr.dtype, np.floating) and not np.all(np.isfinite(arr)):
+        return False
     return np.all(np.isclose(arr, arr.astype(int)))

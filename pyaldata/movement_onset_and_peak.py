@@ -147,9 +147,9 @@ def get_movement_onset(
         index of the onset or NaN if none is found
     """
     if isinstance(start, str):
-        start_idx = int(trial[start])
+        start_idx = int(np.asarray(trial[start]).item())
     else:
-        start_idx = int(start)
+        start_idx = int(np.asarray(start).item())
 
     return start_idx + get_onset_idx(
         trial.vel_norm[start_idx:], min_ds, s_thresh, peak_divisor, method, debug
@@ -204,9 +204,9 @@ def get_peak_speed_idx(trial: pd.Series, start: Union[int, str] = "idx_go_cue") 
         index of maximum velocity
     """
     if isinstance(start, str):
-        start_idx = int(trial[start])
+        start_idx = int(np.asarray(trial[start]).item())
     else:
-        start_idx = int(start)
+        start_idx = int(np.asarray(start).item())
 
     return start_idx + np.argmax(trial.vel_norm[start_idx:])
 
@@ -257,9 +257,9 @@ def get_peak_speed(trial: pd.Series, start: Union[int, str] = "idx_go_cue") -> f
     maximum of the velocity's norm during movement
     """
     if isinstance(start, str):
-        start_idx = int(trial[start])
+        start_idx = int(np.asarray(trial[start]).item())
     else:
-        start_idx = int(start)
+        start_idx = int(np.asarray(start).item())
 
     return np.max(trial.vel_norm[start_idx:])
 
