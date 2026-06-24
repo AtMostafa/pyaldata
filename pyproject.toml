@@ -18,7 +18,7 @@ dependencies = [
     "numpy>=1.26.4",
     "pandas>=2.2.2",
     "scipy>=1.13.0",
-    "mat73>=0.63",
+    "hdf5storage>=0.2",  # read/write MATLAB v7.3 (round-trips empty arrays faithfully)
 ]
 
 [tool.hatch.build.targets.wheel]
