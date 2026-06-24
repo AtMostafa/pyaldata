@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pyaldata"
-version = "0.2.2"
+version = "0.2.4"
 description = "Python implementation of TrialData, a library for simplifying the analysis of trial-based data from neuroscience experiments"
 authors = [
     { name = "Matt Perich" },
